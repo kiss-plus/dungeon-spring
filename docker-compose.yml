@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  sqldb:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: topsecret
+volumes:
+  mysql-data: {}
+
+secrets:
+  users_db:
+    file: './docker/mysql/users_db'
